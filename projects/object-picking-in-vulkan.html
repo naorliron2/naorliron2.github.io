@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Object Picking In Vulkan – Naor Liron</title>
+<meta name="description" content="A short tutorial about object picking in Vulkan.">
+<meta property="og:title" content="Object Picking In Vulkan – Naor Liron">
+<meta property="og:description" content="A short tutorial about object picking in Vulkan.">
+<meta property="og:image" content="https://static.wixstatic.com/media/1b987f_63372235c8c44ca1bf88af44aef387c5~mv2.png">
+<meta name="theme-color" content="#0D0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Naor Liron</a>
+<nav class="nav" aria-label="Main">
+<a href="../index.html#games">Games</a><a href="../index.html#jams">Game Jams</a><a href="../index.html#tools">Tools</a><a href="../index.html#experiments">Experiments</a><a href="../index.html#contact">Contact</a>
+</nav></div></header>
+<div class="pbar"><div class="wrap">
+<a class="back" href="../index.html#experiments">← All work</a>
+<div class="ctrls">
+<label for="pick" class="mono" style="font-size:12px;color:var(--faint)">Project</label>
+<select id="pick" onchange="location.href=this.value"><option value="heretic.html">Games — Heretic</option><option value="race-for-gamer-fuel.html">Games — The Race For Gamer Fuel</option><option value="weeb-simulator.html">Games — Weeb Simulator</option><option value="weapons-arena-vr.html">Games — Weapons Arena VR</option><option value="localray-shooter.html">Games — LocalRay Shooter</option><option value="mudra-slingshot.html">Games — Mudra Slingshot</option><option value="rooting-for-who.html">Game Jams — Rooting For Who?!</option><option value="im-home.html">Game Jams — I&#x27;m Home</option><option value="robocalypse.html">Game Jams — Robocalypse</option><option value="dam-it.html">Game Jams — Dam It!</option><option value="milky-way-boba.html">Game Jams — Milky Way Boba</option><option value="goap.html">Tools — GOAP</option><option value="juice2d.html">Tools — Juice2D</option><option value="procedural-animation.html">Experiments — Procedural Animation</option><option value="object-picking-in-vulkan.html" selected>Experiments — Object Picking In Vulkan</option><option value="reactive-floor.html">Experiments — Reactive Floor</option><option value="houdini-engine.html">Experiments — C++ HoudiniEngine Integration</option><option value="ice-shader.html">Experiments — Ice Shader</option></select>
+<a class="icon-btn" href="procedural-animation.html" aria-label="Previous project: Procedural Animation">←</a>
+<a class="icon-btn" href="reactive-floor.html" aria-label="Next project: Reactive Floor">→</a>
+</div></div></div>
+<main id="main">
+<section class="wrap phero">
+<div class="kicker"><a href="../index.html#experiments">Experiments</a><span>15 / 18</span></div>
+<h1>Object Picking In Vulkan</h1>
+<p class="lede">A short tutorial about object picking in Vulkan.</p>
+<ul class="chips"><li>Vulkan</li><li>C++</li><li>Tutorial</li></ul>
+<img class="cover" src="https://static.wixstatic.com/media/1b987f_63372235c8c44ca1bf88af44aef387c5~mv2.png" alt="Object Picking In Vulkan">
+</section>
+<div class="wrap story">
+<div class="block"><div class="text"><p>I&#x27;m working on a Vulkan render engine and I wanted to be able to click on objects in the scene to select them. As a programmer, the first thing I did was a quick Google search, and I was a bit disappointed with the amount of material I found, so after managing to implement it myself I decided to write a blog post about it.</p><p>Quick disclaimer: this is by no means the best way to implement object picking, but I will show what worked for me.</p></div></div><div class="block"><div class="text"><h2>The theory</h2><p>What we&#x27;re trying to do here is give every object an ID. You can pass it either through descriptors or vertex attributes (I chose the latter; for bigger projects I would recommend using descriptor sets), and then write that ID into an SSBO in the fragment shader.</p></div></div><div class="block"><div class="text"><h2>Attachments</h2><p>Cool! Let&#x27;s start implementing. We&#x27;ll start by creating the color and depth attachments for the framebuffer. The ID is a uint32_t, so we have a max of 4,294,967,295 objects. You&#x27;ll notice that our color attachment is VK_FORMAT_R32_FLOAT; for some reason when the texture is UINT instead, I get garbage values, so I stuck with that, since it is for debug purposes anyway.</p></div><div class="media"><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/e3H0hu4Y?theme=dark"></script></div></figure></div></div><div class="block"><div class="text"><h2>Framebuffer and render pass</h2><p>Now VkFramebuffer creation. Notice that there is a separate render pass for object picking.</p></div><div class="media"><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/cBBQefFu?theme=dark"></script></div><figcaption>VkFramebuffer creation</figcaption></figure><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/1HswyPfY?theme=dark"></script></div><figcaption>Object picking VkRenderPass creation</figcaption></figure><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/ZZi0yxy3?theme=dark"></script></div><figcaption>VkCommandBuffer creation</figcaption></figure></div></div><div class="block"><div class="text"><h2>The pipeline</h2><p>And a separate VkPipeline. Most of this VkPipeline is pretty standard, but a few things are important to mention.</p><p>First, we&#x27;re going to have a VkDynamicState for the scissor. On every click we set the scissor to a size of (1,1) and an offset of (mouse_position.x, mouse_position.y). This is an easy optimisation: we can write the IDs in the fragment shader, knowing it only runs once.</p><p>Second, you need to bind an SSBO (Shader Storage Buffer Object) to the descriptor set of every VkPipeline you want to access the ID from, for read and/or write (meaning we definitely need it in the object picking VkPipeline).</p></div><div class="media"><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/PJBnHAJN?theme=dark"></script></div></figure><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/SsaRmr4Q?theme=dark"></script></div><figcaption>Vertex and fragment shaders</figcaption></figure></div></div><div class="block"><div class="text"><h2>Recording</h2><p>To make sure I execute the object picking render pass only when the mouse is clicked, I set an internal flag before rendering that gets reset when rendering ends.</p></div><div class="media"><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/HmxHBnQs?theme=dark"></script></div></figure><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/2E4AuWbT?theme=dark"></script></div><figcaption>Command buffer recording</figcaption></figure></div></div><div class="block"><div class="text"><h2>Reading the result</h2><p>Now that the SSBO has the value of the chosen object, I can either read it on the CPU if it&#x27;s host-visible (which is slower) or just read the SSBO in whatever shader stage I want.</p></div><div class="media"><figure class="wide"><div class="code"><script src="https://pastebin.com/embed_js/7ymcCAje?theme=dark"></script></div><figcaption>Example of SSBO reading on the CPU</figcaption></figure></div></div><div class="block"><div class="split"><div class="text"><h2>Possible improvements</h2><p>There are a few optimizations I didn&#x27;t need but could be implemented.</p><p>The color attachment is only useful for debugging, as shown below, and could be removed as soon as you see everything is working as intended.</p><p>You could also use multiple render targets, meaning the whole object picking could be done in one render pass and one draw call.</p></div><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_96872c3b0e374e78adf7699f57ced748~mv2.png" alt="The color attachment on one object with the scissor set to full screen, useful for debugging. ID: 30.0" loading="lazy"></div><figcaption>The color attachment on one object with the scissor set to full screen, useful for debugging. ID: 30.0</figcaption></figure></div></div></div></main>
+<nav class="pnav" aria-label="More projects"><div class="wrap">
+<a href="procedural-animation.html"><small>← Previous</small><strong>Procedural Animation</strong></a>
+<a class="next" href="reactive-floor.html"><small>Next →</small><strong>Reactive Floor</strong></a>
+</div></nav>
+<footer class="site-footer"><div class="wrap"><span>© Naor Liron</span><a href="mailto:naorgamedev@gmail.com">naorgamedev@gmail.com</a></div></footer>
+</body>
+</html>

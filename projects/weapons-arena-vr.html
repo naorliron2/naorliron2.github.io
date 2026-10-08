@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weapons Arena VR – Naor Liron</title>
+<meta name="description" content="A VR game where the player has to destroy targets for score using an arsenal of weapons.">
+<meta property="og:title" content="Weapons Arena VR – Naor Liron">
+<meta property="og:description" content="A VR game where the player has to destroy targets for score using an arsenal of weapons.">
+<meta property="og:image" content="https://static.wixstatic.com/media/1b987f_0555d97ae61a486ea700980ef6e15751~mv2.gif">
+<meta name="theme-color" content="#0D0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Naor Liron</a>
+<nav class="nav" aria-label="Main">
+<a href="../index.html#games">Games</a><a href="../index.html#jams">Game Jams</a><a href="../index.html#tools">Tools</a><a href="../index.html#experiments">Experiments</a><a href="../index.html#contact">Contact</a>
+</nav></div></header>
+<div class="pbar"><div class="wrap">
+<a class="back" href="../index.html#games">← All work</a>
+<div class="ctrls">
+<label for="pick" class="mono" style="font-size:12px;color:var(--faint)">Project</label>
+<select id="pick" onchange="location.href=this.value"><option value="heretic.html">Games — Heretic</option><option value="race-for-gamer-fuel.html">Games — The Race For Gamer Fuel</option><option value="weeb-simulator.html">Games — Weeb Simulator</option><option value="weapons-arena-vr.html" selected>Games — Weapons Arena VR</option><option value="localray-shooter.html">Games — LocalRay Shooter</option><option value="mudra-slingshot.html">Games — Mudra Slingshot</option><option value="rooting-for-who.html">Game Jams — Rooting For Who?!</option><option value="im-home.html">Game Jams — I&#x27;m Home</option><option value="robocalypse.html">Game Jams — Robocalypse</option><option value="dam-it.html">Game Jams — Dam It!</option><option value="milky-way-boba.html">Game Jams — Milky Way Boba</option><option value="goap.html">Tools — GOAP</option><option value="juice2d.html">Tools — Juice2D</option><option value="procedural-animation.html">Experiments — Procedural Animation</option><option value="object-picking-in-vulkan.html">Experiments — Object Picking In Vulkan</option><option value="reactive-floor.html">Experiments — Reactive Floor</option><option value="houdini-engine.html">Experiments — C++ HoudiniEngine Integration</option><option value="ice-shader.html">Experiments — Ice Shader</option></select>
+<a class="icon-btn" href="weeb-simulator.html" aria-label="Previous project: Weeb Simulator">←</a>
+<a class="icon-btn" href="localray-shooter.html" aria-label="Next project: LocalRay Shooter">→</a>
+</div></div></div>
+<main id="main">
+<section class="wrap phero">
+<div class="kicker"><a href="../index.html#games">Games</a><span>04 / 18</span></div>
+<h1>Weapons Arena VR</h1>
+<p class="lede">A VR game where the player has to destroy targets for score using an arsenal of weapons.</p>
+<ul class="chips"><li>VR</li><li>OpenVR</li><li>First project</li></ul>
+<img class="cover" src="https://static.wixstatic.com/media/1b987f_0555d97ae61a486ea700980ef6e15751~mv2.gif" alt="Weapons Arena VR">
+</section>
+<div class="wrap story">
+<div class="block"><div class="text"><p>Since I bought a VR headset I wanted to play around with developing for VR, so I decided to make a few weapons you can throw, each with different behaviors.</p></div><div class="media"><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_551a8a1fdf1c48eeb2f8029930fa3f97~mv2.gif" alt="Axe" loading="lazy"></div><figcaption>Axe</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_8005e987323a40abb78714154fddfb15~mv2.gif" alt="Shuriken" loading="lazy"></div><figcaption>Shuriken</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_07398d24fc684e918f6f1a39a9cf79e9~mv2.gif" alt="Spear" loading="lazy"></div><figcaption>Spear</figcaption></figure></div></div><div class="block"><div class="split"><div class="text"><h2>Making throwing feel right</h2><p>This was our first project, so I struggled a bit with making the game feel the way I wanted. Using OpenVR&#x27;s built-in “Pick up” and “Throw” functions didn&#x27;t give me what I was looking for.</p><p>So I tweaked the hold and throw (Velocity Estimator), and I&#x27;m pretty happy with how it turned out.</p><p>After changing the Rigidbody settings of the weapons, they each got their own feel.</p></div><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_1059189297e946608081bbbe4cb85e2a~mv2.gif" alt="Axe hit" loading="lazy"></div><figcaption>Axe hit</figcaption></figure></div></div></div></main>
+<nav class="pnav" aria-label="More projects"><div class="wrap">
+<a href="weeb-simulator.html"><small>← Previous</small><strong>Weeb Simulator</strong></a>
+<a class="next" href="localray-shooter.html"><small>Next →</small><strong>LocalRay Shooter</strong></a>
+</div></nav>
+<footer class="site-footer"><div class="wrap"><span>© Naor Liron</span><a href="mailto:naorgamedev@gmail.com">naorgamedev@gmail.com</a></div></footer>
+</body>
+</html>

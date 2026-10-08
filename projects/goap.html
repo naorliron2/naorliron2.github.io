@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOAP – Naor Liron</title>
+<meta name="description" content="Goal Oriented Action Planning AI.">
+<meta property="og:title" content="GOAP – Naor Liron">
+<meta property="og:description" content="Goal Oriented Action Planning AI.">
+<meta property="og:image" content="https://static.wixstatic.com/media/1b987f_1b333b6ca38e4aa1bbe1a266019add39~mv2.gif">
+<meta name="theme-color" content="#0D0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Naor Liron</a>
+<nav class="nav" aria-label="Main">
+<a href="../index.html#games">Games</a><a href="../index.html#jams">Game Jams</a><a href="../index.html#tools">Tools</a><a href="../index.html#experiments">Experiments</a><a href="../index.html#contact">Contact</a>
+</nav></div></header>
+<div class="pbar"><div class="wrap">
+<a class="back" href="../index.html#tools">← All work</a>
+<div class="ctrls">
+<label for="pick" class="mono" style="font-size:12px;color:var(--faint)">Project</label>
+<select id="pick" onchange="location.href=this.value"><option value="heretic.html">Games — Heretic</option><option value="race-for-gamer-fuel.html">Games — The Race For Gamer Fuel</option><option value="weeb-simulator.html">Games — Weeb Simulator</option><option value="weapons-arena-vr.html">Games — Weapons Arena VR</option><option value="localray-shooter.html">Games — LocalRay Shooter</option><option value="mudra-slingshot.html">Games — Mudra Slingshot</option><option value="rooting-for-who.html">Game Jams — Rooting For Who?!</option><option value="im-home.html">Game Jams — I&#x27;m Home</option><option value="robocalypse.html">Game Jams — Robocalypse</option><option value="dam-it.html">Game Jams — Dam It!</option><option value="milky-way-boba.html">Game Jams — Milky Way Boba</option><option value="goap.html" selected>Tools — GOAP</option><option value="juice2d.html">Tools — Juice2D</option><option value="procedural-animation.html">Experiments — Procedural Animation</option><option value="object-picking-in-vulkan.html">Experiments — Object Picking In Vulkan</option><option value="reactive-floor.html">Experiments — Reactive Floor</option><option value="houdini-engine.html">Experiments — C++ HoudiniEngine Integration</option><option value="ice-shader.html">Experiments — Ice Shader</option></select>
+<a class="icon-btn" href="milky-way-boba.html" aria-label="Previous project: Milky Way Boba">←</a>
+<a class="icon-btn" href="juice2d.html" aria-label="Next project: Juice2D">→</a>
+</div></div></div>
+<main id="main">
+<section class="wrap phero">
+<div class="kicker"><a href="../index.html#tools">Tools</a><span>12 / 18</span></div>
+<h1>GOAP</h1>
+<p class="lede">Goal Oriented Action Planning AI.</p>
+<ul class="chips"><li>AI</li><li>Unity</li><li>Reusable system</li></ul>
+<img class="cover" src="https://static.wixstatic.com/media/1b987f_1b333b6ca38e4aa1bbe1a266019add39~mv2.gif" alt="GOAP">
+</section>
+<div class="wrap story">
+<div class="block"><div class="text"><p>“Goal Oriented Action Planning (aka GOAP, rhymes with soap) refers to a STRIPS-like planning architecture specifically designed for real-time control of autonomous character behavior in games.” — Jeff Orkin</p></div></div><div class="block"><div class="text"><h2>From FSM to GOAP</h2><p>First used in 2005 in the game F.E.A.R., GOAP uses a set of actions, kind of like a finite state machine, but by disconnecting these actions, scaling up systems becomes much easier. So this becomes this.</p><p>Actions can be connected by the planner, which makes adding new actions a lot easier.</p></div><div class="media"><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_343b2f92aac04c1a9f19c1a2bca95861~mv2.png/v1/crop/x_339,y_0,w_668,h_648/fill/w_668,h_648,al_c,q_90,enc_avif,quality_auto/fsm.png" alt="Finite state machine" loading="lazy"></div><figcaption>Finite state machine</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_c22a0aa4fb2b4b7fb7846487e2fbf333~mv2.png/v1/crop/x_355,y_0,w_676,h_648/fill/w_676,h_648,al_c,q_90,enc_avif,quality_auto/goap.png" alt="GOAP" loading="lazy"></div><figcaption>GOAP</figcaption></figure></div></div><div class="block"><div class="split"><div class="text"><p>As you can see here, each AI agent has an overall goal and a current state (usually referred to as the world state), and the planner can switch actions based on the world state.</p></div><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_1b333b6ca38e4aa1bbe1a266019add39~mv2.gif" alt="" loading="lazy"></div></figure></div></div><div class="block"><div class="text"><h2>Actions</h2><p>Each enemy holds a set of possible actions it can do.</p><p>Each action has its data, and the data holds 3 things: the preconditions (what the world state needs to be in order to do the action), the effects this action has on the world state, and the cost of the action (if two actions have the same effect, the action with the lower cost will be done).</p></div><div class="media"><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_bbd3730710c6495e928926a5eb45abab~mv2.png/v1/crop/x_1,y_0,w_518,h_251/fill/w_518,h_251,al_c,q_90,enc_avif,quality_auto/actions.png" alt="Actions" loading="lazy"></div><figcaption>Actions</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_534931c6bf844f60bff6d62e271db06f~mv2.png/v1/crop/x_0,y_146,w_523,h_175/fill/w_523,h_175,al_c,q_90,enc_avif,quality_auto/data.png" alt="Action data" loading="lazy"></div><figcaption>Action data</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_bd86a29c90a4439b96108c725d236622~mv2.png/v1/crop/x_0,y_1,w_521,h_258/fill/w_521,h_258,al_c,q_90,enc_avif,quality_auto/effects.png" alt="Effects and preconditions" loading="lazy"></div><figcaption>Effects and preconditions</figcaption></figure></div></div><div class="block"><div class="split rev"><div class="text"><h2>The planner</h2><p>The planner script is responsible for checking what actions are currently available and whether they achieve the goal we need.</p></div><figure><div class="frame small"><img src="https://static.wixstatic.com/media/1b987f_d2fe0e64b5df4f838d634a30007aabb7~mv2.png/v1/crop/x_78,y_0,w_444,h_123/fill/w_444,h_123,al_c,q_90,enc_avif,quality_auto/planner.png" alt="From “Goal Oriented Action Planning For Smarter AI” by Brent Owens, showing how the planner works" loading="lazy"></div><figcaption>From “Goal Oriented Action Planning For Smarter AI” by Brent Owens, showing how the planner works</figcaption></figure></div></div><div class="block"><div class="text"><p>Once the planner has found a path, it queues up the actions, and that&#x27;s pretty much it. This example is pretty small-scale and a finite state machine would have worked just as well, but now these scripts can be dropped into any project and adapted to its needs.</p></div></div><div class="block"><div class="text"><h2>In my games</h2><p>Two examples of this system in two of my games.</p></div><div class="media"><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_c8278919e8474e359347ebe1f604c1ab~mv2.gif" alt="The Race For Gamer Fuel" loading="lazy"></div><figcaption>The Race For Gamer Fuel</figcaption></figure><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_f188d00cf9c147b0b1d1591d0dc7e148~mv2.gif" alt="Heretic" loading="lazy"></div><figcaption>Heretic</figcaption></figure></div></div></div></main>
+<nav class="pnav" aria-label="More projects"><div class="wrap">
+<a href="milky-way-boba.html"><small>← Previous</small><strong>Milky Way Boba</strong></a>
+<a class="next" href="juice2d.html"><small>Next →</small><strong>Juice2D</strong></a>
+</div></nav>
+<footer class="site-footer"><div class="wrap"><span>© Naor Liron</span><a href="mailto:naorgamedev@gmail.com">naorgamedev@gmail.com</a></div></footer>
+</body>
+</html>

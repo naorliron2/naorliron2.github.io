@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reactive Floor – Naor Liron</title>
+<meta name="description" content="A reactive floor shader using vertex displacement.">
+<meta property="og:title" content="Reactive Floor – Naor Liron">
+<meta property="og:description" content="A reactive floor shader using vertex displacement.">
+<meta property="og:image" content="https://static.wixstatic.com/media/1b987f_1f6899c74dad4c13aabfdcbfa02405ce~mv2.gif">
+<meta name="theme-color" content="#0D0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Naor Liron</a>
+<nav class="nav" aria-label="Main">
+<a href="../index.html#games">Games</a><a href="../index.html#jams">Game Jams</a><a href="../index.html#tools">Tools</a><a href="../index.html#experiments">Experiments</a><a href="../index.html#contact">Contact</a>
+</nav></div></header>
+<div class="pbar"><div class="wrap">
+<a class="back" href="../index.html#experiments">← All work</a>
+<div class="ctrls">
+<label for="pick" class="mono" style="font-size:12px;color:var(--faint)">Project</label>
+<select id="pick" onchange="location.href=this.value"><option value="heretic.html">Games — Heretic</option><option value="race-for-gamer-fuel.html">Games — The Race For Gamer Fuel</option><option value="weeb-simulator.html">Games — Weeb Simulator</option><option value="weapons-arena-vr.html">Games — Weapons Arena VR</option><option value="localray-shooter.html">Games — LocalRay Shooter</option><option value="mudra-slingshot.html">Games — Mudra Slingshot</option><option value="rooting-for-who.html">Game Jams — Rooting For Who?!</option><option value="im-home.html">Game Jams — I&#x27;m Home</option><option value="robocalypse.html">Game Jams — Robocalypse</option><option value="dam-it.html">Game Jams — Dam It!</option><option value="milky-way-boba.html">Game Jams — Milky Way Boba</option><option value="goap.html">Tools — GOAP</option><option value="juice2d.html">Tools — Juice2D</option><option value="procedural-animation.html">Experiments — Procedural Animation</option><option value="object-picking-in-vulkan.html">Experiments — Object Picking In Vulkan</option><option value="reactive-floor.html" selected>Experiments — Reactive Floor</option><option value="houdini-engine.html">Experiments — C++ HoudiniEngine Integration</option><option value="ice-shader.html">Experiments — Ice Shader</option></select>
+<a class="icon-btn" href="object-picking-in-vulkan.html" aria-label="Previous project: Object Picking In Vulkan">←</a>
+<a class="icon-btn" href="houdini-engine.html" aria-label="Next project: C++ HoudiniEngine Integration">→</a>
+</div></div></div>
+<main id="main">
+<section class="wrap phero">
+<div class="kicker"><a href="../index.html#experiments">Experiments</a><span>16 / 18</span></div>
+<h1>Reactive Floor</h1>
+<p class="lede">A reactive floor shader using vertex displacement.</p>
+<ul class="chips"><li>Shader</li><li>Vertex displacement</li><li>With Tomer Steinbock</li></ul>
+<img class="cover" src="https://static.wixstatic.com/media/1b987f_1f6899c74dad4c13aabfdcbfa02405ce~mv2.gif" alt="Reactive Floor">
+</section>
+<div class="wrap story">
+<div class="block"><div class="split"><div class="text"><p>As a challenge from one of our teachers, my colleague and friend Tomer Steinbock and I started working on a “Reactive Floor” shader.</p><p>At first we managed to get the effect we wanted in code by instantiating particles and telling them how to behave, but we soon realized this was pretty heavy and couldn&#x27;t be scaled up or really used in a game.</p></div><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_f8f31d01521c4b6f8518e842aca3961c~mv2.gif" alt="" loading="lazy"></div></figure></div></div><div class="block"><div class="split rev"><div class="text"><p>So we decided to try and write a shader. We had played around with some simple shaders for toon shading, but this was our first time playing with vertex displacement.</p><p>Color can be controlled in the material.</p></div><figure><div class="frame"><img src="https://static.wixstatic.com/media/1b987f_4f4b317597144ea3a19672d70898aeb9~mv2.gif" alt="Color controlled in the material" loading="lazy"></div><figcaption>Color controlled in the material</figcaption></figure></div></div><div class="block"><div class="text"><p>We were both pretty happy with the result. We also wanted to add some waves with Perlin noise and some different effects, but we had other, more important projects to work on.</p></div></div></div></main>
+<nav class="pnav" aria-label="More projects"><div class="wrap">
+<a href="object-picking-in-vulkan.html"><small>← Previous</small><strong>Object Picking In Vulkan</strong></a>
+<a class="next" href="houdini-engine.html"><small>Next →</small><strong>C++ HoudiniEngine Integration</strong></a>
+</div></nav>
+<footer class="site-footer"><div class="wrap"><span>© Naor Liron</span><a href="mailto:naorgamedev@gmail.com">naorgamedev@gmail.com</a></div></footer>
+</body>
+</html>
